@@ -10,16 +10,29 @@ namespace IntroductionToLINQ_Features
     {
         static void Main(string[] args)
         {
-            Employee[] developers = new Employee[]
+            Func<int, int> square = x => x * x;
+            Func<int, int, int> add = (x, y) => x + y;
+
+            Console.WriteLine(square(add(3,5)));
+
+            var developers = new Employee[]
             {
                 new Employee { Id = 1, Name = "Scott"},
                 new Employee { Id = 2, Name = "Chris"}
             };
 
-            List<Employee> sales = new List<Employee>()
+            var sales = new List<Employee>()
             {
                 new Employee { Id = 3, Name = "Alex"}
             };
+
+            Console.WriteLine(developers.Count());
+            foreach (var person in developers.Where(
+                e => e.Name.StartsWith("S")))
+            {
+                Console.WriteLine(person.Name);
+            }
+            //IEnumerator<Employee> enumerator = developers.GetEnumerator();
         }
     }
 }
